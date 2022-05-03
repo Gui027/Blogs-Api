@@ -3,7 +3,9 @@ const { generateToken } = require('../Auth/jwt');
 
 const UsersController = async (req, res) => {
     const { displayName, email, password, image } = req.body;
-
+    console.log('email', email);
+    console.log('reqbody', req.body);
+    console.log('req', req);
     const emailExist = await User.findOne({ where: { email } });
 
     if (emailExist) {
