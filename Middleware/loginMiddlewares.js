@@ -5,7 +5,7 @@ const loginValidation = (req, _res, next) => {
         email: Joi.string().email().required(),
         password: Joi.string().length(6).required(),
     }).validate(req.body);
-    console.log('error', error);
+    
     if (error) next(error);
 
     next();

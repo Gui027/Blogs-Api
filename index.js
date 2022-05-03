@@ -5,12 +5,13 @@ const app = express();
 const bodyParser = require('body-parser');
 
 const UsersController = require('./Controller/postUsersController');
-// const usersMiddlewares = require('./Middleware/usersMiddlewares');
-// const Error = require('./Errors/errors');
-// const LoginController = require('./Controller/postLoginController');
-// const loginMiddlewares = require('./Middleware/loginMiddlewares');
-// const getUser = require('./Controller/getUserController');
-// const authToken = require('./Middleware/getUsersMiddlewares');
+const usersMiddlewares = require('./Middleware/usersMiddlewares');
+const Error = require('./Errors/errors');
+const LoginController = require('./Controller/postLoginController');
+const loginMiddlewares = require('./Middleware/loginMiddlewares');
+const getUser = require('./Controller/getUserController');
+const authToken = require('./Middleware/getUsersMiddlewares');
+const getById = require('./Controller/getByIdController');
 
 app.use(bodyParser.json());
 
@@ -21,7 +22,8 @@ app.get('/', (request, response) => {
 
 app.listen(3000, () => console.log('ouvindo porta 3000!'));
 
-app.post('/user', /* usersMiddlewares */ UsersController);
-// app.post('/login', loginMiddlewares, LoginController);
-// app.get('/user', /* authToken */ getUser);
-// app.use(Error);
+app.post('/user', usersMiddlewares, UsersController);
+app.post('/login', loginMiddlewares, LoginController);
+app.get('/user', authToken, getUser);
+app.get('/user/:id', authToken, getById);
+app.use(Error);
