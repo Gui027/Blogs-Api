@@ -13,6 +13,7 @@ const getUser = require('./Controller/getUserController');
 const authToken = require('./Middleware/getUsersMiddlewares');
 const getById = require('./Controller/getByIdController');
 const postCategories = require('./Controller/postCategories');
+const getCategories = require('./Controller/getCategoriesController');
 
 app.use(bodyParser.json());
 
@@ -28,4 +29,5 @@ app.post('/login', loginMiddlewares, LoginController);
 app.get('/user', authToken, getUser);
 app.get('/user/:id', authToken, getById);
 app.post('/categories', authToken, postCategories);
+app.get('/categories', authToken, getCategories);
 app.use(Error);
