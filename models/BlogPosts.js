@@ -30,7 +30,7 @@ module.exports = (sequelize, DataTypes) => {
   const BlogPosts = sequelize.define('BlogPosts', {
     title: DataTypes.STRING,
     content: DataTypes.STRING,
-    userId: DataTypes.NUMBER,
+    userId: DataTypes.STRING,
     published: DataTypes.STRING,
     updated: DataTypes.STRING,
   }, {
