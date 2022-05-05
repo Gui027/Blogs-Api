@@ -10,11 +10,11 @@ const UsersController = async (req, res) => {
         return res.status(409).json({ message: 'User already registered' });
     }
 
-    const user = await User.create({ displayName, email, password, image });
+    const { user } = await User.create({ displayName, email, password, image });
 
     const token = generateToken(user);
 
-    return res.status(201).json({ token });
+    return res.status(201).json(token);
 };
 
 module.exports = UsersController;

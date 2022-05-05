@@ -12,6 +12,8 @@ if (!infosToken) {
     return res.status(401).json({ message: 'Expired or invalid token' });
 }
 
+req.user = infosToken.user;
+
 next();
 };
 

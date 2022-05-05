@@ -15,25 +15,28 @@ module.exports = {
         type: Sequelize.STRING
       },
       userId: {
-        type: Sequelize.STRING
+        type: Sequelize.INTEGER,
+        foreingKey: true,
+        references: {
+          model:'Users',
+          key:'id',
+        },
       },
-      published: {
-        type: Sequelize.STRING
+      createdAt: {
+        allowNull: false,
+        type: Sequelize.DATE,
+        field: 'published',
+        defaultValue: new Date() 
       },
-      updated: {
-        type: Sequelize.STRING
+      updatedAt: {
+        allowNull: false,
+        type: Sequelize.DATE,
+        field: 'updated',
+        defaultValue: new Date()
       }
-      // createdAt: {
-      //   allowNull: false,
-      //   type: Sequelize.DATE
-      // },
-      // updatedAt: {
-      //   allowNull: false,
-      //   type: Sequelize.DATE
-      // }
     });
   },
-  down: async (queryInterface, Sequelize) => {
-    await queryInterface.dropTable('BlogPosts');
+  down: (queryInterface, Sequelize) => {
+    return queryInterface.dropTable('BlogPosts');
   }
 };
