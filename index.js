@@ -30,4 +30,5 @@ app.get('/user', authToken, getUser);
 app.get('/user/:id', authToken, getById);
 app.post('/categories', authToken, postCategories);
 app.get('/categories', authToken, getCategories);
+app.post('/post');
 app.use(Error);
