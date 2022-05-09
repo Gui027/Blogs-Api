@@ -8,7 +8,6 @@ const categoriesController = async (req, res) => {
     }
 
     const categories = await Categories.create({ name });
-    console.log('categories', categories);
 
     return res.status(201).json(categories);
 };    

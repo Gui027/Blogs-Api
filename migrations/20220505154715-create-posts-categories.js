@@ -9,10 +9,20 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       postId: {
-        type: Sequelize.STRING
+        type: Sequelize.INTEGER,
+        references: {
+          model: 'BlogPosts',
+          key: 'id'
+        },
+        primaryKey: true,
       },
       categoryId: {
-        type: Sequelize.STRING
+        type: Sequelize.INTEGER,
+        references: {
+          model: 'Categories',
+          key: 'id'
+        },
+        primaryKey: true,
       }
       // createdAt: {
       //   allowNull: false,

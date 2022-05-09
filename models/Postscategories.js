@@ -23,6 +23,22 @@
 //   return PostsCategories;
 // };
 
+// const associations = (models) => {
+//   models.BlogPost.belongsToMany(models.Categories, {
+//     as: 'categories',
+//     through: models.PostCategories,
+//     forengKey: 'categoryId',
+//     otherKey: 'postId',
+//   });
+
+//   models.Categories.belongsToMany(models.BlogPost, {
+//     as: 'posts',
+//     through: models.PostCategories,
+//     forengKey: 'postId',
+//     otherKey: 'categoryId',
+//   });
+// };
+
 module.exports = (sequelize, DataTypes) => {
   const PostCategories = sequelize.define('PostCategories', {
     postId: DataTypes.STRING,
@@ -31,5 +47,18 @@ module.exports = (sequelize, DataTypes) => {
     timestamps: false,
   });
 
+  PostCategories.associate = (models) => {
+    models.Categories.belongsToMany(models.BlogPost, {
+      as: 'blogposts',
+      through: PostCategories,
+      foreignKey: 'id',
+      otherKey: 'id',
+    });
+
+    models.BlogPost.belongsToMany(models.Categories, {
+      as: 'categories', through: PostCategories, foreignKey: 'id', otherKey: 'id',
+    });
+  };
+  // PostCategories.associate = associations;
   return PostCategories;
 };

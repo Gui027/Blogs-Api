@@ -27,12 +27,12 @@ app.get('/', (request, response) => {
 
 app.listen(3000, () => console.log('ouvindo porta 3000!'));
 
+app.get('/user/:id', authToken, getById);
+app.get('/user', authToken, getUser);
+app.get('/post', authToken, getPost);
+app.get('/categories', authToken, getCategories);
 app.post('/user', usersMiddlewares, UsersController);
 app.post('/login', loginMiddlewares, LoginController);
-app.get('/user', authToken, getUser);
-app.get('/user/:id', authToken, getById);
 app.post('/categories', authToken, postCategories);
-app.get('/categories', authToken, getCategories);
 app.post('/post', authToken, postMiddlewares, postBlogController);
-app.get('/post', authToken, getPost);
 app.use(Error);
