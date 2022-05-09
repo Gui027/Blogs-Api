@@ -40,7 +40,7 @@
 // };
 
 module.exports = (sequelize, DataTypes) => {
-  const PostCategories = sequelize.define('PostCategories', {
+  const PostCategories = sequelize.define('PostsCategories', {
     postId: DataTypes.STRING,
     categoryId: DataTypes.STRING,
   }, {
@@ -51,12 +51,12 @@ module.exports = (sequelize, DataTypes) => {
     models.Categories.belongsToMany(models.BlogPost, {
       as: 'blogposts',
       through: PostCategories,
-      foreignKey: 'id',
-      otherKey: 'id',
+      foreignKey: 'categoryId',
+      otherKey: 'postId',
     });
 
     models.BlogPost.belongsToMany(models.Categories, {
-      as: 'categories', through: PostCategories, foreignKey: 'id', otherKey: 'id',
+      as: 'categories', through: PostCategories, foreignKey: 'postId', otherKey: 'categoryId',
     });
   };
   // PostCategories.associate = associations;
